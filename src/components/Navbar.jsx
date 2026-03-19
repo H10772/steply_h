@@ -16,7 +16,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner container">
         <Link to="/" className="navbar-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src={steplyLogo} alt="Steply" className="logo-img" style={{ height: '130px', width: 'auto', borderRadius: '0' }} />
+          <img src={steplyLogo} alt="Steply" className="logo-img" />
         </Link>
 
         <div className={`navbar-right ${mobileOpen ? 'open' : ''}`}>

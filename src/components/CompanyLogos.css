@@ -37,3 +37,12 @@
     height: 26px;
   }
 }
+
+@media (max-width: 480px) {
+  .logos-row {
+    gap: var(--space-lg);
+  }
+  .brand-svg {
+    height: 20px;
+  }
+}

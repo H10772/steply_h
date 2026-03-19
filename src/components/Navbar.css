@@ -200,12 +200,12 @@
 
 @media (max-width: 768px) {
   .navbar-inner {
-    height: 80px;
+    height: 70px;
   }
   
   .logo-img {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
   }
   
   .logo-text {
@@ -252,13 +252,13 @@
 
 @media (max-width: 480px) {
   .navbar-inner {
-    height: 70px;
-    padding: 0 var(--space-md);
+    height: 60px;
+    padding: 0 var(--space-sm);
   }
   
   .logo-img {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
   }
   
   .logo-text {

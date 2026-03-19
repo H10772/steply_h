@@ -2,6 +2,13 @@
    Landing Page — MentorCruise-Exact Style
    ======================================== */
 
+/* Landing Page Wrapper — prevent any horizontal overflow */
+.landing {
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100vw;
+}
+
 .section-title-serif {
   font-family: var(--font-serif);
   font-size: var(--font-4xl);
@@ -263,11 +270,11 @@
 .mentor-carousel-track {
   display: flex;
   gap: var(--space-xl);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
   padding: 0 var(--space-xl) var(--space-lg);
   -ms-overflow-style: none;
   scrollbar-width: none;
+  overflow-x: auto;
+  will-change: scroll-position;
 }
 .mentor-carousel-track::-webkit-scrollbar { display: none; }
 
@@ -397,9 +404,18 @@
     min-height: auto;
     padding: calc(var(--nav-height) + var(--space-2xl)) var(--space-md) var(--space-3xl);
   }
+
+  /* Hide decorative shapes that can push layout */
+  .hero-shape {
+    display: none;
+  }
+
+  .hero-glow {
+    display: none;
+  }
   
   .hero-content {
-    padding: var(--space-xl) var(--space-md);
+    padding: var(--space-xl) var(--space-sm);
   }
   
   .hero-title {
@@ -446,6 +462,33 @@
     grid-template-columns: 1fr; 
     gap: var(--space-2xl);
   }
+
+  /* Fingertips: text first, phone mockup below */
+  .fingertips-content {
+    order: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fingertips-visual {
+    order: 2;
+  }
+  .fingertips-desc {
+    font-size: var(--font-sm);
+  }
+  .fingertips-features {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    text-align: left;
+    width: 100%;
+  }
+
+  /* Stop phone mockup floating animation on mobile */
+  .phone-mockup {
+    animation: none;
+    max-width: 220px;
+  }
   
   .longterm-sticky-grid { 
     grid-template-columns: 1fr; 
@@ -454,12 +497,21 @@
   .longterm-sticky-left { 
     position: relative; 
     top: 0; 
+    z-index: 1;
+    background: transparent;
+    padding: 0;
     margin-bottom: var(--space-2xl); 
   }
-  
-  .fingertips-features { 
-    grid-template-columns: 1fr; 
-    gap: var(--space-md);
+
+  /* Timeline adjustments for mobile */
+  .longterm-scroll-right {
+    padding-left: 24px;
+  }
+
+  .timeline-dot {
+    left: -30px;
+    width: 10px;
+    height: 10px;
   }
   
   .explore-grid, .oneoff-grid { 
@@ -495,17 +547,13 @@
   
   .free-trial-left {
     padding: var(--space-2xl) var(--space-lg);
+    text-align: center;
   }
   
   .free-trial-right {
     min-height: 200px;
     border-left: none;
     border-top: 2px solid var(--accent-primary);
-  }
-  
-  /* Phone Mockup */
-  .phone-mockup {
-    max-width: 240px;
   }
   
   /* Timeline Cards */
@@ -539,6 +587,22 @@
   .veterans-desc {
     font-size: var(--font-sm);
     padding: 0 var(--space-md);
+  }
+
+  /* Mentor Carousel — smaller cards */
+  .carousel-card {
+    flex: 0 0 240px;
+  }
+  .carousel-card-img img {
+    height: 140px;
+  }
+
+  /* Explore Cards — shorter images */
+  .explore-card-img img {
+    height: 140px;
+  }
+  .explore-card {
+    padding: var(--space-md);
   }
 }
 
@@ -805,6 +869,7 @@
 .longterm-sticky-left {
   position: sticky;
   top: calc(var(--nav-height) + 60px);
+  align-self: start;
 }
 
 .longterm-sticky-left .section-title-serif {
@@ -1750,6 +1815,7 @@
   margin-bottom: var(--space-xl);
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   line-height: 1.3;
+  word-wrap: break-word; /* Fix cutoff text */
 }
 
 /* Review Carousel */
@@ -1905,12 +1971,15 @@
   }
   
   .veteran-card { 
-    flex: 0 0 280px; 
+    flex: 0 0 260px; 
     max-height: 320px; 
   }
   
+  /* Review carousel cards fill container on mobile */
   .review-carousel-card { 
-    flex: 0 0 300px; 
+    flex: 0 0 100%; 
+    min-height: 280px;
+    padding: var(--space-xl);
   }
   
   .convinced-grid { 
@@ -1921,11 +1990,15 @@
   .convinced-left {
     padding-right: 0;
     text-align: center;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
-  
-  .review-carousel-card {
-    min-height: 280px;
-    padding: var(--space-xl);
+
+  .convinced-right {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
   
   .review-carousel-controls {
@@ -1957,6 +2030,84 @@
   .feature-desc {
     font-size: var(--font-xs);
   }
+
+  /* Growth section */
+  .tc-growth {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Plans cards */
+  .tc-plans {
+    flex-wrap: wrap;
+  }
+
+  /* ===== CRITICAL: These must come AFTER base styles to override =====  */
+
+  /* Fingertips: single column, text first, image below */
+  .fingertips-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+  .fingertips-content {
+    order: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fingertips-visual {
+    order: 2;
+  }
+  .fingertips-desc {
+    font-size: var(--font-sm);
+  }
+  .fingertips-features {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    text-align: left;
+    width: 100%;
+  }
+  .phone-mockup {
+    animation: none;
+    max-width: 220px;
+  }
+
+  /* Explore & One-Off grids: single column */
+  .explore-grid {
+    grid-template-columns: 1fr;
+  }
+  .oneoff-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Long-term sticky: single column */
+  .longterm-sticky-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Shorter card images */
+  .carousel-card-img img {
+    height: 140px;
+  }
+  .explore-card-img img {
+    height: 140px;
+  }
+  .explore-card {
+    padding: var(--space-md);
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  /* Free trial banner */
+  .free-trial-banner {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1965,7 +2116,7 @@
   }
   
   .veteran-card {
-    flex: 0 0 260px;
+    flex: 0 0 230px;
   }
   
   .veteran-price strong {
@@ -1982,11 +2133,25 @@
   
   .review-carousel-card {
     padding: var(--space-md);
-    min-height: 260px;
+    min-height: 240px;
   }
   
   .review-arrow {
     width: 36px;
     height: 36px;
+  }
+
+  .carousel-card {
+    flex: 0 0 220px;
+  }
+
+  .longterm-scroll-right {
+    padding-left: 20px;
+  }
+
+  .timeline-dot {
+    left: -26px;
+    width: 8px;
+    height: 8px;
   }
 }

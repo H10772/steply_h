@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: 'var(--space-md)' }}>
-              <img src={steplyLogo} alt="Steply" className="footer-logo-img" style={{ height: '130px', width: 'auto', borderRadius: '0' }} />
+              <img src={steplyLogo} alt="Steply" className="footer-logo-img" />
             </Link>
             <p className="footer-desc">
               Your trusted source to find highly-vetted mentors & industry professionals to move your career ahead.

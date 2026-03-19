@@ -56,21 +56,46 @@ export default function Landing() {
     return () => clearTimeout(timer);
   }, [currentWord, isDeleting, loopNum, typingSpeed]);
 
-  // Auto-scroll mentor carousel
+  // Auto-scroll mentor carousel using scrollLeft to allow manual scrolling
   useEffect(() => {
     const track = carouselRef.current;
     if (!track) return;
-    let scrollPos = 0;
-    const speed = 0.5;
     let raf;
+    const speed = 0.5;
+    let isPaused = false;
+    let lastInteract = 0;
+
+    const handleInteract = () => {
+      isPaused = true;
+      lastInteract = Date.now();
+    };
+
+    track.addEventListener('touchstart', handleInteract, { passive: true });
+    track.addEventListener('wheel', handleInteract, { passive: true });
+    track.addEventListener('mousedown', handleInteract, { passive: true });
+
     const scroll = () => {
-      scrollPos += speed;
-      if (scrollPos >= track.scrollWidth / 2) scrollPos = 0;
-      track.scrollLeft = scrollPos;
+      if (!isPaused) {
+        track.scrollLeft += speed;
+        // The array is triplicated. Once we reach 1/3 of scrollWidth, reset to 0.
+        // Wait until scrollWidth is populated
+        if (track.scrollWidth > 0 && track.scrollLeft >= track.scrollWidth / 3) {
+          track.scrollLeft = 0;
+        }
+      } else {
+        if (Date.now() - lastInteract > 3000) {
+          isPaused = false;
+        }
+      }
       raf = requestAnimationFrame(scroll);
     };
     raf = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      track.removeEventListener('touchstart', handleInteract);
+      track.removeEventListener('wheel', handleInteract);
+      track.removeEventListener('mousedown', handleInteract);
+    };
   }, []);
 
   // Review carousel next/prev
@@ -83,15 +108,32 @@ export default function Landing() {
     const track = veteransTrackRef.current;
     if (!section || !track) return;
     let raf;
-    let scrollPos = 0;
     const speed = 0.6;
     let isVisible = false;
+    let isPaused = false;
+    let lastInteract = 0;
+
+    const handleInteract = () => {
+      isPaused = true;
+      lastInteract = Date.now();
+    };
+
+    track.addEventListener('touchstart', handleInteract, { passive: true });
+    track.addEventListener('wheel', handleInteract, { passive: true });
+    track.addEventListener('mousedown', handleInteract, { passive: true });
 
     const scroll = () => {
-      if (!isVisible) { raf = requestAnimationFrame(scroll); return; }
-      scrollPos += speed;
-      if (scrollPos >= track.scrollWidth / 3) scrollPos = 0;
-      track.scrollLeft = scrollPos;
+      if (!isVisible || isPaused) { 
+        if (isPaused && Date.now() - lastInteract > 3000) {
+          isPaused = false;
+        }
+        raf = requestAnimationFrame(scroll); 
+        return; 
+      }
+      track.scrollLeft += speed;
+      if (track.scrollWidth > 0 && track.scrollLeft >= track.scrollWidth / 3) {
+        track.scrollLeft = 0;
+      }
       raf = requestAnimationFrame(scroll);
     };
 
@@ -115,6 +157,9 @@ export default function Landing() {
     return () => {
       cancelAnimationFrame(raf);
       observer.disconnect();
+      track.removeEventListener('touchstart', handleInteract);
+      track.removeEventListener('wheel', handleInteract);
+      track.removeEventListener('mousedown', handleInteract);
     };
   }, []);
 
