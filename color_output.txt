@@ -1,0 +1,10 @@
+Color: (0, 0, 0) Hex: #000000 Count: 8738
+Color: (0, 1, 0) Hex: #000100 Count: 83
+Color: (253, 253, 253) Hex: #fdfdfd Count: 47
+Color: (182, 0, 183) Hex: #b600b7 Count: 29
+Color: (0, 2, 0) Hex: #000200 Count: 18
+Color: (98, 3, 100) Hex: #620364 Count: 10
+Color: (5, 2, 5) Hex: #050205 Count: 8
+Color: (183, 0, 184) Hex: #b700b8 Count: 7
+Color: (6, 1, 6) Hex: #060106 Count: 7
+Color: (197, 0, 200) Hex: #c500c8 Count: 7

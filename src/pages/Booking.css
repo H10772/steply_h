@@ -1,0 +1,327 @@
+/* Booking Page */
+.booking-page {
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
+  padding-bottom: var(--space-4xl);
+  min-height: 100vh;
+}
+
+.booking-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.booking-header h1 {
+  font-size: var(--font-3xl);
+  font-weight: 800;
+  margin-bottom: var(--space-sm);
+}
+
+.booking-header p {
+  color: var(--text-secondary);
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* Mentor Mini Card */
+.booking-mentor {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.booking-mentor h3 {
+  font-weight: 700;
+}
+
+.booking-mentor p {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.booking-mentor-rating {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.booking-mentor-rating .star {
+  color: #fbbf24;
+}
+
+/* Sections */
+.booking-section {
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.booking-section h2 {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+}
+
+/* Session Type */
+.session-type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.session-type-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+.session-type-card:hover {
+  border-color: var(--accent-primary);
+}
+
+.session-type-card.active {
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.type-icon {
+  font-size: 1.5rem;
+}
+
+.type-label {
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.type-price {
+  font-size: var(--font-lg);
+  font-weight: 800;
+  color: var(--accent-primary);
+}
+
+/* Date Grid */
+.date-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-sm);
+}
+
+.date-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px 8px;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.date-card:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.date-card.active {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: white;
+}
+
+.date-day {
+  font-size: var(--font-xs);
+  text-transform: uppercase;
+}
+
+.date-num {
+  font-size: var(--font-xl);
+  font-weight: 700;
+}
+
+.date-month {
+  font-size: var(--font-xs);
+}
+
+/* Time Grid */
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+.time-slot {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: var(--font-sm);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.time-slot:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.time-slot.active {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: white;
+}
+
+/* Summary */
+.summary-card {
+  padding: var(--space-xl);
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-xl));
+}
+
+.summary-card h2 {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.summary-row.total {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.summary-total {
+  color: var(--accent-primary);
+  font-size: var(--font-2xl);
+  font-weight: 800;
+}
+
+.summary-divider {
+  height: 1px;
+  background: var(--border-color);
+}
+
+.summary-guarantee {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.summary-guarantee p {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+@media (max-width: 1024px) {
+  .booking-grid {
+    grid-template-columns: 1fr;
+  }
+  .summary-card {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-hero {
+    padding: calc(var(--nav-height) + var(--space-2xl)) 0 var(--space-2xl);
+  }
+  
+  .booking-hero h1 {
+    font-size: var(--font-2xl);
+  }
+  
+  .session-type-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .date-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xs);
+  }
+  
+  .time-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xs);
+  }
+  
+  .booking-section {
+    padding: var(--space-xl);
+  }
+  
+  .summary-card {
+    padding: var(--space-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-hero h1 {
+    font-size: var(--font-xl);
+  }
+  
+  .date-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .time-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .booking-section {
+    padding: var(--space-lg);
+  }
+  
+  .summary-card {
+    padding: var(--space-lg);
+  }
+  
+  .session-type-card {
+    padding: var(--space-md);
+  }
+}
